@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAPEN // DATA & AUTOMAATIO</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --fg: #e0e0e0;
+    --accent1: #ccff00;
+    --accent2: #ff003c;
+    --border: 2px solid var(--fg);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Ticker */
+  .ticker {
+    background: var(--accent1);
+    color: var(--bg);
+    font-weight: 900;
+    padding: 8px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    border-bottom: var(--border);
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+  }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Main Layout */
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    min-height: 90vh;
+    border-bottom: var(--border);
+  }
+
+  /* Left Panel */
+  .left-panel {
+    border-right: var(--border);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .logo {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 4rem;
+    line-height: 0.8;
+    letter-spacing: -4px;
+    color: var(--accent1);
+    text-shadow: 4px 4px 0 var(--accent2);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin: 40px auto;
+  }
+  .meta {
+    font-size: 10px;
+    opacity: 0.6;
+    line-height: 1.5;
+  }
+
+  /* Right Panel */
+  .right-panel {
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .hero-title {
+    font-family: 'Arial Black', sans-serif;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    line-height: 1;
+    text-transform: uppercase;
+    border-bottom: 4px solid var(--accent1);
+    padding-bottom: 20px;
+  }
+  .hero-title span { color: var(--accent2); }
+
+  /* Services Grid */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    border: var(--border);
+    padding: 25px;
+    position: relative;
+    transition: all 0.2s ease;
+    background: var(--bg);
+  }
+  .card:hover {
+    background: var(--fg);
+    color: var(--bg);
+    transform: translate(-5px, -5px);
+    box-shadow: 5px 5px 0 var(--accent1);
+  }
+  .card:hover .card-num { color: var(--accent2); }
+  
+  .card-num {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--accent1);
+    opacity: 0.3;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-family: 'Arial Black', sans-serif;
+  }
+  .card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .card p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    opacity: 0.8;
+  }
+
+  /* Footer */
+  footer {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: var(--fg);
+    color: var(--bg);
+    font-weight: bold;
+  }
+  footer a { color: var(--bg); text-decoration: none; border-bottom: 2px solid var(--accent2); }
+
+  /* Glitch Effect */
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
+  .glitch:hover { animation: glitch 0.3s infinite; color: var(--accent2); }
+
+  /* Background Grid */
+  .bg-grid {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+      linear-gradient(rgba(204, 255, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(204, 255, 0, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: -1;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    /// VAPEN /// SUURET TIETOMASSAT /// RAJAPINNAT /// AUTOMAATIO /// VAPEN /// SUURET TIETOMASSAT /// RAJAPINNAT /// AUTOMAATIO ///&nbsp;
+    /// VAPEN /// SUURET TIETOMASSAT /// RAJAPINNAT /// AUTOMAATIO /// VAPEN /// SUURET TIETOMASSAT /// RAJAPINNAT /// AUTOMAATIO ///&nbsp;
+  </div>
+</div>
+
+<div class="container">
+  <aside class="left-panel">
+    <div class="meta">
+      SYS.OP: ONLINE<br>
+      LAT: 60.1699° N<br>
+      LONG: 24.9384° E<br>
+      STATUS: AKTIIVINEN
+    </div>
+    <div class="logo glitch">VAPEN</div>
+    <div class="meta">
+      © 2026 VAPEN OY<br>
+      HELSINKI, FINLAND<br>
+      Y-TUNNUS: 1234567-8
+    </div>
+  </aside>
+
+  <main class="right-panel">
+    <h1 class="hero-title">
+      Data on <span>valtaa</span>.<br>
+      Me käsittelemme sen.
+    </h1>
+
+    <div class="services">
+      <div class="card">
+        <div class="card-num">01</div>
+        <h3>Suuret tietomassat</h3>
+        <p>Räätälöity big data -käsittely, analyysi ja strukturointi. Muutamme raaka-aineen päätöksentekoa tukevaksi tiedoksi.</p>
+      </div>
+      
+      <div class="card">
+        <div class="card-num">02</div>
+        <h3>Rajapintojen kehitys</h3>
+        <p>API-integraatiot kaikkiin moderneihin palveluihin. Saumaton datanvirta järjestelmien välillä ilman rajoja.</p>
+      </div>
+      
+      <div class="card">
+        <div class="card-num">03</div>
+        <h3>Prosessiautomaatio</h3>
+        <p>Skriptit ja botit, jotka ottavat hoitaakseen toistuvat rutiinit. Säästä aikaa ja elimoi inhimilliset virheet.</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div>[ OTAYHTEYS@VAPEN.FI ]</div>
+  <div><a href="#" class="glitch">KÄYNNISTÄ PROJEKTI &gt;&gt;</a></div>
+</footer>
+
+</body>
+</html>
